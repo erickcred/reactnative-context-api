@@ -4,7 +4,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
 import UserScreen from "../screens/UserScreen";
 
-const { Navigator, Screen } = createStackNavigator();
+
+export type RootStackParamList = {
+  Home: undefined,
+  User: {
+    userName: string,
+  }
+}
+const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
 export default function RoutesStack() {
   return (
