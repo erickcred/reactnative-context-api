@@ -6,7 +6,7 @@ import UserScreen from "../screens/UserScreen";
 
 const { Navigator, Screen } = createStackNavigator();
 
-export default function RoputeStack() {
+export default function RoutesStack() {
   return (
     <NavigationContainer>
       <Navigator>
