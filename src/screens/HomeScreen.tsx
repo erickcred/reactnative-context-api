@@ -1,16 +1,37 @@
-import { useNavigation } from "@react-navigation/native";
-import { Button, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, Text, TextInput, View } from "react-native";
 
-export default function HomeScreen() {
-  const navigation = useNavigation();
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../router/routes";
+
+type HomeScreenProps = {
+  navigation: StackNavigationProp<RootStackParamList, "Home">;
+}
+
+export default function HomeScreen({ navigation }: HomeScreenProps) {
+  const [userName, setUserName] = useState("");
+
+  const navigateToUserscreen = () => {
+    if (userName)
+      navigation.navigate("User", { userName: userName });
+  }
 
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <TextInput
+        style={{
+          marginVertical: 10,
+          borderWidth: 1,
+          borderColor: "#9e9e9e"
+        }}
+        placeholder="Digite o seu nome..."
+        onChangeText={(text) => setUserName(text)}
+        value={userName}
+      />
 
       <Button
         title="User"
-        onPress={() => navigation.navigate("User")}
+        onPress={navigateToUserscreen}
       />
     </View>
   )
